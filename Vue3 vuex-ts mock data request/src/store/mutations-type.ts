@@ -1,0 +1,5 @@
+export enum MutationsType {
+    INCREMENT='INCREMENT',
+    DECREMENT = 'DECREMENT',
+    MUTATION_USER_LIST='MUTATION_USER_LIST',
+}
