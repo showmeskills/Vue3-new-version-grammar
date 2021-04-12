@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Todo } from '@/typings'
-import { defineComponent,ref,computed} from 'vue'
+import { defineComponent,ref,computed,toRefs,toRef} from 'vue'
 
 export default defineComponent({
     props:{
@@ -49,23 +49,22 @@ export default defineComponent({
                 isActive.value = true;
             }
         }
-        const {deleteTodo,index,updateTodo,todo} = props;
         //删除数据的方法
         const delTodo =()=>{
             //提示
             if(window.confirm('确定要删除吗？')){
-                deleteTodo(index);
+                props.deleteTodo(props.index);
             }
         }
         //判断是否完成 (使用计算属性判断父组件传过来的是值)
         //计算属性的方式--来让当前的复选框选中/不选中
         const isComplete = computed({
             get(){
-                return todo.isCompleted
+                return props.todo.isCompleted
             },
             set(val){
                 //todo对象中的isCompleted进行操作
-                updateTodo(todo,val)
+                props.updateTodo(props.todo,val)
             }
         })
 
